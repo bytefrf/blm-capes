@@ -1,0 +1,24 @@
+plugins {
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+}
+
+group = 'dev.bytefg.blmcapes'
+version = '0.1.0'
+base { archivesName = 'blmcapes' }
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+    copyIdeResources = true
+    runs {
+        client {
+            workingDirectory project.file('run')
+            mods { blmcapes { source sourceSets.main } }
+        }
+    }
+}
+
+repositories { mavenCentral() }
+dependencies { minecraft 'net.minecraftforge:forge:1.20.1-47.4.13' }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+jar.finalizedBy('reobfJar')
