@@ -15,7 +15,9 @@ import net.minecraft.world.entity.player.PlayerModelPart;
 import net.minecraft.world.item.Items;
 
 public final class BlmCapeLayer extends RenderLayer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> {
-    private static final ResourceLocation CAPE = new ResourceLocation(BlmCapes.MOD_ID, "textures/cape.png");
+    private static final ResourceLocation BLM_CAPE = new ResourceLocation(BlmCapes.MOD_ID, "textures/capes/blm.png");
+    private static final ResourceLocation TFGM_CAPE = new ResourceLocation(BlmCapes.MOD_ID, "textures/capes/tfgm.png");
+    private static final ResourceLocation AXOLOTL_CAPE = new ResourceLocation(BlmCapes.MOD_ID, "textures/capes/axolotl.png");
 
     public BlmCapeLayer(RenderLayerParent<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> renderer) {
         super(renderer);
@@ -24,7 +26,10 @@ public final class BlmCapeLayer extends RenderLayer<AbstractClientPlayer, Player
     @Override
     public void render(PoseStack pose, MultiBufferSource buffers, int light, AbstractClientPlayer player,
                        float limbSwing, float limbAmount, float partialTick, float age, float yaw, float pitch) {
-        if (!CapeConfig.showsCape(player.getUUID()) || player.isInvisible()
+        String capeId = CapeConfig.getDebugCape(player.getUUID());
+        if (capeId == null) capeId = CapeSyncManager.getCape(player.getUUID());
+        ResourceLocation cape = textureFor(capeId);
+        if (cape == null || player.isInvisible()
                 || !player.isModelPartShown(PlayerModelPart.CAPE)
                 || player.getItemBySlot(EquipmentSlot.CHEST).is(Items.ELYTRA)
                 || (player.isCapeLoaded() && player.getCloakTextureLocation() != null)) return;
@@ -46,7 +51,17 @@ public final class BlmCapeLayer extends RenderLayer<AbstractClientPlayer, Player
         pose.mulPose(Axis.XP.rotationDegrees(6.0F + forward / 2.0F + vertical));
         pose.mulPose(Axis.ZP.rotationDegrees(side / 2.0F));
         pose.mulPose(Axis.YP.rotationDegrees(180.0F - side / 2.0F));
-        getParentModel().renderCloak(pose, buffers.getBuffer(RenderType.entitySolid(CAPE)), light, net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY);
+        getParentModel().renderCloak(pose, buffers.getBuffer(RenderType.entitySolid(cape)), light, net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY);
         pose.popPose();
+    }
+
+    private static ResourceLocation textureFor(String capeId) {
+        if (capeId == null) return null;
+        return switch (capeId) {
+            case "blm" -> BLM_CAPE;
+            case "tfgm" -> TFGM_CAPE;
+            case "axolotl" -> AXOLOTL_CAPE;
+            default -> null;
+        };
     }
 }
