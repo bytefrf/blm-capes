@@ -3,6 +3,7 @@ package dev.bytefg.blmcapes;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
@@ -22,6 +23,7 @@ class CapeProtocolTest {
             CapeAssignment assignment = CapeProtocol.assignmentFor(id);
             assertEquals(id, assignment.builtinId());
             assertFalse(assignment.isCustom());
+            assertNotNull(getClass().getResource("/assets/blmcapes/textures/capes/" + id + ".png"), id);
         }
     }
 

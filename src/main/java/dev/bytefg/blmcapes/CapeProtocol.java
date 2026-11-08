@@ -16,7 +16,8 @@ import com.google.gson.JsonParser;
 final class CapeProtocol {
     static final Set<String> BUILTIN_IDS = Set.of(
             "blm", "tfgm", "axolotl", "copper", "bronze", "steel", "space", "forest",
-            "flame", "ice", "dragon", "ender");
+            "flame", "ice", "dragon", "ender", "aurora", "sunset", "ocean", "cherry",
+            "storm", "royal", "nebula", "ember");
     private static final Pattern CUSTOM_CODE = Pattern.compile("custom_([0-9a-f]{64})");
 
     private CapeProtocol() {}

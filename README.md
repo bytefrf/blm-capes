@@ -4,7 +4,7 @@
 
 **Экспериментальная версия:** API сайта пока не опубликован; кастомные плащи и синхронизация двух игроков ещё не проверены в реальной игре.
 
-Ответ принимается только в виде `{"success":true,"version":2,"capes":{"uuid":"code"}}`. Разрешены встроенные коды `blm`, `tfgm`, `axolotl`, `copper`, `bronze`, `steel`, `space`, `forest`, `flame`, `ice`, `dragon`, `ender`, а также строго `custom_` + 64 строчных шестнадцатеричных символа SHA-256. Всё остальное игнорируется.
+Ответ принимается только в виде `{"success":true,"version":2,"capes":{"uuid":"code"}}`. Разрешены встроенные коды `blm`, `tfgm`, `axolotl`, `copper`, `bronze`, `steel`, `space`, `forest`, `flame`, `ice`, `dragon`, `ender`, `aurora`, `sunset`, `ocean`, `cherry`, `storm`, `royal`, `nebula`, `ember`, а также строго `custom_` + 64 строчных шестнадцатеричных символа SHA-256. Всё остальное игнорируется.
 
 ## Синхронизация и безопасность
 
