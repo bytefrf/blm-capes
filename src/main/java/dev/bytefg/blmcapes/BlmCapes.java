@@ -1,5 +1,6 @@
 package dev.bytefg.blmcapes;
 
+import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -8,10 +9,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import org.slf4j.Logger;
 
 @Mod(BlmCapes.MOD_ID)
 public final class BlmCapes {
     public static final String MOD_ID = "blmcapes";
+    static final Logger LOGGER = LogUtils.getLogger();
 
     public BlmCapes() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, CapeConfig.SPEC);

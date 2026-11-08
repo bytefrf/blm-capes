@@ -4,10 +4,10 @@ license="All Rights Reserved"
 
 [[mods]]
 modId="blmcapes"
-version="0.1.0"
+version="0.2.0"
 displayName="BL-Modern Capes"
 authors="BL-Modern"
-description='''Клиентские плащи BL-Modern. Локальный тестовый режим.'''
+description='''Клиентские плащи BL-Modern, экспериментальная синхронизация.'''
 displayTest="IGNORE_ALL_VERSION"
 
 [[dependencies.blmcapes]]
@@ -20,6 +20,6 @@ side="CLIENT"
 [[dependencies.blmcapes]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.20.1,1.21)"
+versionRange="[1.20.1,1.20.2)"
 ordering="NONE"
 side="CLIENT"

@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'dev.bytefg.blmcapes'
-version = '0.1.0'
+version = '0.2.0'
 base { archivesName = 'blmcapes' }
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
@@ -19,6 +19,14 @@ minecraft {
 }
 
 repositories { mavenCentral() }
-dependencies { minecraft 'net.minecraftforge:forge:1.20.1-47.4.13' }
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.4.13'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+}
 tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+tasks.named('test', Test).configure {
+    useJUnitPlatform()
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+}
 jar.finalizedBy('reobfJar')
